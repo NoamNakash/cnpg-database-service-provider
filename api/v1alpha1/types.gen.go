@@ -244,6 +244,14 @@ type DatabaseResources struct {
 
 // DatabaseSpec Database specification with input fields for creation
 type DatabaseSpec struct {
+	// ConnectionString database connection URI (response-only).
+	// Format: <scheme>://<username>:<password>@<hostname>:<port>/<database>
+	// Empty until the database is running.
+	//
+	//
+	// Example: postgresql://app:s3cret@pg-db-rw.databases.svc:5432/app
+	ConnectionString *string `json:"connection_string,omitempty"`
+
 	// Engine Database engine (e.g. "postgresql")
 	Engine DatabaseEngine `json:"engine"`
 
