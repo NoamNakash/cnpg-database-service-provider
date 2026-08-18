@@ -19,7 +19,7 @@ controlled by the [CloudNativePG](https://cloudnative-pg.io/) operator.
   [Cloud Events](https://cloudevents.io/) v1.0 on NATS subject `dcm.database`
 - Auto-registration - registers itself with the DCM control plane on startup,
   with exponential backoff retry.
-- AEP-complient API - follows [API Enhancement Proposals](https://aep.dev)
+- AEP-compliant API - follows [API Enhancement Proposals](https://aep.dev)
   standards; request validation is enforced via embedded OpenAPI spec
 - RFC 9457 errors - all error responses use the Problem Details format
 
@@ -38,11 +38,11 @@ Response example:
 
 ```json
 {
-    "type": "cnpg-databse-service-provider.dcm.io/health",
+    "type": "cnpg-database-service-provider.dcm.io/health",
     "status": "healthy",
     "path": "health",
     "version": "0.0.1-dev",
-    "uptime": 3600,
+    "uptime": 3600
 }
 ```
 
@@ -56,8 +56,15 @@ Response example:
 | `DELETE` | `/api/v1alpha1/databases/{database_id}` | Delete a database. Returns `204 No Content`.                                                                                    |
 
 All error responses use [RFC 9457](https://www.rfc-editor.org/info/rfc9457/)
-Problem Details with types: `INVALID_ARGUMENT`, `NOT_FOUND`, `ALREADY_EXISTS`,
-`INTERNAL`.
+Problem Details with types:
+
+- https://dcm-project.github.io/problems/invalid-argument
+- https://dcm-project.github.io/problems/not-found
+- https://dcm-project.github.io/problems/already-exists
+- https://dcm-project.github.io/problems/permission-denied
+- https://dcm-project.github.io/problems/unauthenticated
+- https://dcm-project.github.io/problems/internal
+- https://dcm-project.github.io/problems/unavailable
 
 ## Development
 
@@ -65,7 +72,7 @@ Problem Details with types: `INVALID_ARGUMENT`, `NOT_FOUND`, `ALREADY_EXISTS`,
 
 - Go 1.25.5+
 - `make`
-- Access to a Kubernetes cluster with CloudNativePG instaled
+- Access to a Kubernetes cluster with CloudNativePG installed
 
 ### Build and Run
 
@@ -106,7 +113,6 @@ Generated files (do not edit manually):
 ## Project Structure
 
 ```
-###TODO paste tree of complete bootstrap
 .
 ├── api/v1alpha1                        # OpenAPI spec and generated types
 ├── cmd/cnpg-database-service-provider  # Entry point (bootstrap stub)
