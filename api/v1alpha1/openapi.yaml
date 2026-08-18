@@ -439,6 +439,15 @@ components:
           $ref: '#/components/schemas/DatabaseResources'
         network:
           $ref: '#/components/schemas/DatabaseNetwork'
+        connection_string:
+          type: string
+          description: |
+            database connection URI (response-only).
+            Format: <scheme>://<username>:<password>@<hostname>:<port>/<database>
+            Empty until the database is running.
+          pattern: '^[a-z][a-z0-9+.-]*://[^/@]+:[^/@]+@[^:/]+:[0-9]+/.+$'
+          readOnly: true
+          example: "postgresql://app:s3cret@pg-db-rw.databases.svc:5432/app"
         provider_hints:
           type: object
           description: Optional provider-specific hints from the catalog (accepted, not acted upon)
